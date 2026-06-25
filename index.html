@@ -289,7 +289,7 @@
     <div class="text-center mb-14">
       <span class="badge text-xs font-semibold px-3 py-1.5 rounded-full inline-block mb-4">Preços</span>
       <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Simples e transparente</h2>
-      <p class="text-gray-400 text-lg">7 dias grátis em qualquer plano. Sem cartão de crédito.</p>
+      <p class="text-gray-400 text-lg">7 dias grátis em qualquer plano. Cancele quando quiser.</p>
     </div>
     <div class="grid md:grid-cols-3 gap-6 mb-8">
 
@@ -310,9 +310,9 @@
           <li class="flex items-center gap-2.5 text-sm text-gray-300"><span class="text-blue-400">✓</span> Relatórios PDF</li>
           <li class="flex items-center gap-2.5 text-sm text-gray-300"><span class="text-blue-400">✓</span> Suporte por e-mail</li>
         </ul>
-        <a href="https://app.pneucontrol.com.br" class="block text-center bg-white/8 hover:bg-white/14 border border-white/10 text-white font-semibold py-3 rounded-xl transition-colors text-sm">
-          Começar grátis
-        </a>
+        <button onclick="abrirCheckout('starter')" class="block w-full text-center bg-white/8 hover:bg-white/14 border border-white/10 text-white font-semibold py-3 rounded-xl transition-colors text-sm cursor-pointer">
+          Começar grátis — 7 dias
+        </button>
       </div>
 
       <!-- Pro (popular) -->
@@ -335,9 +335,9 @@
           <li class="flex items-center gap-2.5 text-sm text-gray-300"><span class="text-blue-400">✓</span> Análise por marca</li>
           <li class="flex items-center gap-2.5 text-sm text-gray-300"><span class="text-blue-400">✓</span> Suporte prioritário</li>
         </ul>
-        <a href="https://app.pneucontrol.com.br" class="block text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-colors text-sm glow">
-          Começar grátis
-        </a>
+        <button onclick="abrirCheckout('pro')" class="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-colors text-sm glow cursor-pointer">
+          Começar grátis — 7 dias
+        </button>
       </div>
 
       <!-- Business -->
@@ -357,9 +357,9 @@
           <li class="flex items-center gap-2.5 text-sm text-gray-300"><span class="text-blue-400">✓</span> Inteligência de frota</li>
           <li class="flex items-center gap-2.5 text-sm text-gray-300"><span class="text-blue-400">✓</span> Suporte via WhatsApp</li>
         </ul>
-        <a href="https://app.pneucontrol.com.br" class="block text-center bg-white/8 hover:bg-white/14 border border-white/10 text-white font-semibold py-3 rounded-xl transition-colors text-sm">
-          Começar grátis
-        </a>
+        <button onclick="abrirCheckout('business')" class="block w-full text-center bg-white/8 hover:bg-white/14 border border-white/10 text-white font-semibold py-3 rounded-xl transition-colors text-sm cursor-pointer">
+          Começar grátis — 7 dias
+        </button>
       </div>
     </div>
 
@@ -451,5 +451,87 @@
   </div>
 </footer>
 
+<!-- Modal de Checkout -->
+<div id="checkout-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#111827;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:32px;width:100%;max-width:420px;margin:20px;">
+    <h3 style="color:#fff;font-size:18px;font-weight:700;margin:0 0 8px;">Começar período grátis</h3>
+    <p id="checkout-plano-label" style="color:#60A5FA;font-size:13px;margin:0 0 20px;"></p>
+    <div style="margin-bottom:16px;">
+      <label style="color:#9CA3AF;font-size:13px;display:block;margin-bottom:6px;">E-mail corporativo</label>
+      <input id="checkout-email" type="email" placeholder="seu@email.com.br"
+        style="width:100%;box-sizing:border-box;background:#0A0E1A;border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none;"
+        onkeydown="if(event.key==='Enter')iniciarCheckout()"/>
+    </div>
+    <button onclick="iniciarCheckout()"
+      style="width:100%;background:#3B82F6;color:#fff;border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:10px;">
+      Criar conta grátis — 7 dias
+    </button>
+    <button onclick="fecharCheckout()"
+      style="width:100%;background:transparent;color:#6B7280;border:none;padding:8px;font-size:13px;cursor:pointer;">
+      Cancelar
+    </button>
+    <p style="color:#4B5563;font-size:11px;text-align:center;margin-top:12px;">Sem cartão de crédito agora • Cancele quando quiser</p>
+  </div>
+</div>
+
+<script>
+  const CHECKOUT_FN_URL = 'https://createcheckoutsession-xsyryekbmq-uc.a.run.app';
+  const PLANO_LABELS = {
+    starter:  'Plano Starter — R$97/mês após 7 dias grátis',
+    pro:      'Plano Pro — R$187/mês após 7 dias grátis',
+    business: 'Plano Business — R$347/mês após 7 dias grátis',
+  };
+  let _planoAtual = null;
+
+  function abrirCheckout(plano) {
+    _planoAtual = plano;
+    document.getElementById('checkout-plano-label').textContent = PLANO_LABELS[plano] || plano;
+    document.getElementById('checkout-email').value = '';
+    const modal = document.getElementById('checkout-modal');
+    modal.style.display = 'flex';
+    setTimeout(() => document.getElementById('checkout-email').focus(), 100);
+  }
+
+  function fecharCheckout() {
+    document.getElementById('checkout-modal').style.display = 'none';
+    _planoAtual = null;
+  }
+
+  async function iniciarCheckout() {
+    const email = document.getElementById('checkout-email').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('checkout-email').focus();
+      return;
+    }
+    const btn = document.querySelector('#checkout-modal button:first-of-type');
+    btn.textContent = 'Aguarde…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(CHECKOUT_FN_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plano: _planoAtual, email }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert('Erro ao iniciar checkout: ' + (data.error || 'Tente novamente.'));
+        btn.textContent = 'Criar conta grátis — 7 dias';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      alert('Erro de conexão. Tente novamente.');
+      btn.textContent = 'Criar conta grátis — 7 dias';
+      btn.disabled = false;
+    }
+  }
+
+  // Fechar modal ao clicar fora
+  document.getElementById('checkout-modal').addEventListener('click', function(e) {
+    if (e.target === this) fecharCheckout();
+  });
+</script>
 </body>
 </html>
