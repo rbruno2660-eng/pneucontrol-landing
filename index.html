@@ -58,7 +58,7 @@
     </h1>
     <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
       O PneuControl centraliza inspeções, movimentações, histórico e alertas da sua frota em um único lugar. 
-      Acesse do celular ou computador, a qualquer hora.
+      Acesse pelo navegador, do computador ou do celular, a qualquer hora — nada para instalar.
     </p>
     <div class="flex flex-col sm:flex-row gap-3 justify-center">
       <button onclick="abrirCheckout('pro')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-4 rounded-xl transition-all glow text-base cursor-pointer">
@@ -70,20 +70,82 @@
     </div>
     <p class="text-xs text-gray-500 mt-4">Sem contrato. Cancele quando quiser.</p>
 
-    <!-- App screenshot mockup -->
+    <!-- Dashboard web mockup -->
     <div class="mt-16 float flex justify-center">
-      <div style="position:relative;display:inline-block;">
-        <!-- Phone frame -->
-        <div style="background:#1a1a2e;border:3px solid rgba(255,255,255,0.12);border-radius:40px;padding:12px;box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.04),inset 0 0 0 1px rgba(255,255,255,0.06);">
-          <!-- Notch -->
-          <div style="width:60px;height:6px;background:rgba(255,255,255,0.15);border-radius:3px;margin:0 auto 10px;"></div>
-          <!-- Screenshot -->
-          <img src="app-screenshot.png" alt="PneuControl - Detalhes do Veículo" style="width:260px;border-radius:24px;display:block;">
-          <!-- Home indicator -->
-          <div style="width:80px;height:4px;background:rgba(255,255,255,0.2);border-radius:2px;margin:10px auto 0;"></div>
+      <div style="position:relative;display:inline-block;max-width:680px;width:100%;">
+        <!-- Browser frame -->
+        <div style="background:#1a1a2e;border:2px solid rgba(255,255,255,0.12);border-radius:14px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.04);">
+          <!-- Browser chrome -->
+          <div style="background:#111827;padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.08);">
+            <div style="display:flex;gap:6px;">
+              <div style="width:11px;height:11px;border-radius:50%;background:#ff5f57;"></div>
+              <div style="width:11px;height:11px;border-radius:50%;background:#febc2e;"></div>
+              <div style="width:11px;height:11px;border-radius:50%;background:#28c840;"></div>
+            </div>
+            <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:6px;padding:5px 12px;font-size:11px;color:rgba(255,255,255,0.4);text-align:center;">app.pneucontrol.com.br</div>
+          </div>
+          <!-- Dashboard content -->
+          <div style="background:#0f172a;padding:16px;font-family:sans-serif;">
+            <!-- Top bar -->
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+              <div style="font-size:13px;font-weight:700;color:#fff;">PneuControl</div>
+              <div style="background:#1e3a5f;border-radius:6px;padding:4px 10px;font-size:11px;color:#60a5fa;">Frota Ativa</div>
+            </div>
+            <!-- KPI cards -->
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;">
+              <div style="background:#111827;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px;">
+                <div style="font-size:10px;color:#6b7280;margin-bottom:4px;">Veículos</div>
+                <div style="font-size:18px;font-weight:700;color:#fff;">24</div>
+                <div style="font-size:9px;color:#22c55e;">▲ 100%</div>
+              </div>
+              <div style="background:#111827;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px;">
+                <div style="font-size:10px;color:#6b7280;margin-bottom:4px;">Pneus</div>
+                <div style="font-size:18px;font-weight:700;color:#fff;">312</div>
+                <div style="font-size:9px;color:#22c55e;">▲ ativos</div>
+              </div>
+              <div style="background:#111827;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px;">
+                <div style="font-size:10px;color:#6b7280;margin-bottom:4px;">Alertas</div>
+                <div style="font-size:18px;font-weight:700;color:#f59e0b;">7</div>
+                <div style="font-size:9px;color:#f59e0b;">⚠ atenção</div>
+              </div>
+              <div style="background:#111827;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px;">
+                <div style="font-size:10px;color:#6b7280;margin-bottom:4px;">Críticos</div>
+                <div style="font-size:18px;font-weight:700;color:#ef4444;">2</div>
+                <div style="font-size:9px;color:#ef4444;">● urgente</div>
+              </div>
+            </div>
+            <!-- Vehicle list -->
+            <div style="background:#111827;border:1px solid rgba(255,255,255,0.08);border-radius:8px;overflow:hidden;">
+              <div style="padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:11px;font-weight:600;color:#fff;">Veículos da Frota</span>
+                <span style="font-size:10px;color:#6b7280;">Atualizado agora</span>
+              </div>
+              <div style="padding:8px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div>
+                  <div style="font-size:11px;color:#fff;font-weight:500;">ABC-1234 · Volvo FH</div>
+                  <div style="font-size:10px;color:#6b7280;">18 pneus · Eixo 3</div>
+                </div>
+                <div style="background:#14532d;color:#22c55e;font-size:10px;padding:2px 8px;border-radius:4px;">Bom</div>
+              </div>
+              <div style="padding:8px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div>
+                  <div style="font-size:11px;color:#fff;font-weight:500;">DEF-5678 · Scania R</div>
+                  <div style="font-size:10px;color:#6b7280;">18 pneus · Eixo 3</div>
+                </div>
+                <div style="background:#713f12;color:#f59e0b;font-size:10px;padding:2px 8px;border-radius:4px;">Aviso</div>
+              </div>
+              <div style="padding:8px 12px;display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:11px;color:#fff;font-weight:500;">GHI-9012 · Mercedes</div>
+                  <div style="font-size:10px;color:#6b7280;">12 pneus · Eixo 2</div>
+                </div>
+                <div style="background:#7f1d1d;color:#ef4444;font-size:10px;padding:2px 8px;border-radius:4px;">Crítico</div>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- Glow effect -->
-        <div style="position:absolute;inset:-20px;background:radial-gradient(ellipse at center,rgba(59,130,246,0.15) 0%,transparent 70%);pointer-events:none;z-index:-1;border-radius:60px;"></div>
+        <div style="position:absolute;inset:-20px;background:radial-gradient(ellipse at center,rgba(59,130,246,0.12) 0%,transparent 70%);pointer-events:none;z-index:-1;border-radius:30px;"></div>
       </div>
     </div>
   </div>
@@ -122,7 +184,7 @@
     <div class="text-center mb-14">
       <span class="badge text-xs font-semibold px-3 py-1.5 rounded-full inline-block mb-4">Funcionalidades</span>
       <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Tudo que você precisa, em um lugar só</h2>
-      <p class="text-gray-400 text-lg">Acesse pelo celular ou computador — funciona em qualquer dispositivo.</p>
+      <p class="text-gray-400 text-lg">Acesse pelo navegador — funciona em qualquer computador ou celular, sem instalar nada.</p>
     </div>
     <div class="grid md:grid-cols-2 gap-6">
       <div class="bg-[#111827] card-border rounded-2xl p-6 flex gap-4">
@@ -131,7 +193,7 @@
         </div>
         <div>
           <h3 class="text-white font-semibold mb-1">Inspeções digitais</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Registre profundidade de sulco, pressão e fotos direto pelo celular. O status atualiza automaticamente.</p>
+          <p class="text-gray-400 text-sm leading-relaxed">Registre profundidade de sulco, pressão e fotos direto pelo navegador, no computador ou no celular. O status atualiza automaticamente.</p>
         </div>
       </div>
       <div class="bg-[#111827] card-border rounded-2xl p-6 flex gap-4">
@@ -198,7 +260,7 @@
       <div>
         <div class="w-12 h-12 rounded-full bg-blue-600 text-white font-bold text-lg flex items-center justify-center mx-auto mb-4">2</div>
         <h3 class="text-white font-semibold mb-2">Registre inspeções</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">Pelo celular, no pátio ou na estrada. O sistema calcula automaticamente o status de cada pneu.</p>
+        <p class="text-gray-400 text-sm leading-relaxed">Pelo navegador do celular, no pátio ou na estrada. O sistema calcula automaticamente o status de cada pneu.</p>
       </div>
       <div>
         <div class="w-12 h-12 rounded-full bg-blue-600 text-white font-bold text-lg flex items-center justify-center mx-auto mb-4">3</div>
@@ -232,7 +294,7 @@
           <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-blue-400 text-base">✓</span> Veículos ilimitados</li>
           <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-blue-400 text-base">✓</span> Pneus e inspeções ilimitados</li>
           <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-blue-400 text-base">✓</span> Múltiplos usuários e frotas</li>
-          <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-blue-400 text-base">✓</span> App web instalável no celular</span></li>
+          <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-blue-400 text-base">✓</span> Acesso pelo navegador, sem instalar nada</li>
           <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-blue-400 text-base">✓</span> Painel web completo</li>
           <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-blue-400 text-base">✓</span> Relatórios PDF e exportação CSV</li>
           <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-blue-400 text-base">✓</span> Alertas automáticos de pneus críticos</li>
@@ -271,7 +333,7 @@
           Preciso instalar algum programa?
           <span class="text-gray-400 group-open:rotate-180 transition-transform">↓</span>
         </summary>
-        <p class="px-6 pb-5 text-gray-400 text-sm leading-relaxed">Não. O PneuControl funciona direto no navegador (computador) e no app (celular). Basta criar sua conta e começar.</p>
+        <p class="px-6 pb-5 text-gray-400 text-sm leading-relaxed">Não. O PneuControl funciona direto no navegador — no computador ou no celular. Basta criar sua conta e começar.</p>
       </details>
       <details class="bg-[#111827] card-border rounded-xl group">
         <summary class="flex items-center justify-between px-6 py-4 cursor-pointer text-white font-medium text-sm list-none">
